@@ -8,7 +8,7 @@ export default function App() {
         <span className="tag">STUDENT STARTER</span>
       </header>
       <CourseList />
-      <footer className="bottom"><span>OSS Week 11 · React</span><span>Local state only · Refresh resets data</span></footer>
+      <footer className="bottom"><span>OSS Week 11 · React</span><span>22300404송준선</span></footer>
     </main>
   );
 }
