@@ -8,7 +8,7 @@
     "Segoe UI",
     sans-serif;
   color: #202c3c;
-  background: #f5f7fb;
+  background: #eef5f3;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -68,7 +68,7 @@ body {
 .stat {
   background: #fff;
   border: 1px solid #e7ebf1;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 19px 20px;
   box-shadow: 0 3px 12px #273d5a05;
 }
@@ -142,11 +142,11 @@ body {
   font-family: inherit;
 }
 .btn.primary {
-  background: #496fd3;
+  background: #167768;
   color: white;
 }
 .btn.primary:hover {
-  background: #365bb7;
+  background: #105c50;
 }
 .btn.secondary {
   background: #edf1f8;

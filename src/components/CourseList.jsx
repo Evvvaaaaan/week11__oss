@@ -6,6 +6,7 @@ export default function CourseList() {
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
   const [newName, setNewName] = useState('');
+  const [search, setSearch] = useState('');
 
   // [제공] 삭제 기능: filter로 새 배열을 만들어 업데이트합니다.
   function handleDelete(id) {
@@ -21,7 +22,7 @@ export default function CourseList() {
     if (!newName.trim()) return;
     const newCourse = {
       id: Date.now(),
-      name: newName,
+      name: newName.trim(),
       category: '기타',
       completed: false
     };
@@ -42,6 +43,9 @@ export default function CourseList() {
   }
 
   const doneCount = courses.filter(course => course.completed).length;
+  const visibleCourses = courses.filter(course =>
+    course.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   return (
     <>
@@ -52,14 +56,25 @@ export default function CourseList() {
       </section>
       <section className="panel">
         <div className="panel-header"><h2>My Courses</h2><span className="small-note">{courses.length} courses</span></div>
-        <p className="todo">실습 과제: 아래 Add 버튼과 완료 체크박스의 기능을 직접 구현하세요.</p>
+        <p className="todo">과목을 등록하고 완료 여부를 체크하며 학습 현황을 관리하세요.</p>
         <form className="add-form" onSubmit={handleAdd}>
           <input className="input" value={newName} onChange={event => setNewName(event.target.value)} placeholder="새 과목명을 입력하세요" aria-label="새 과목명" />
           <button className="btn primary" type="submit">+ Add Course</button>
         </form>
+        <div className="tools">
+          <input
+            className="input"
+            type="search"
+            value={search}
+            onChange={event => setSearch(event.target.value)}
+            placeholder="과목명 검색"
+            aria-label="과목명 검색"
+          />
+        </div>
         <div className="list-head"><span>COURSE</span><span>CATEGORY</span><span>ACTIONS</span></div>
         {courses.length === 0 && <div className="empty">등록된 과목이 없습니다.</div>}
-        {courses.map(course => (
+        {courses.length > 0 && visibleCourses.length === 0 && <div className="empty">검색 결과가 없습니다.</div>}
+        {visibleCourses.map(course => (
           <CourseItem key={course.id} course={course} onDelete={handleDelete} onToggle={handleToggle} />
         ))}
       </section>
